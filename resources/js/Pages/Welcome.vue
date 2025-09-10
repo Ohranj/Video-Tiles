@@ -5,10 +5,14 @@ import Puzzle from '../components/svg/Puzzle.vue';
 import Clipboard from '../components/svg/Clipboard.vue';
 import Wallet from '../components/svg/Wallet.vue';
 import Modal from '../components/Modal.vue';
+import Instructions from '../components/Instructions.vue';
 
 export default {
     components: {
-        GuestLayout, Trophy, Puzzle, Clipboard, Wallet, Modal
+        GuestLayout, Trophy, Puzzle, Clipboard, Wallet, Modal, Instructions
+    },
+    props: {
+        url: String
     },
     data() {
         return {
@@ -41,6 +45,9 @@ export default {
                 }
             }
         }
+    },
+    mounted() {
+        console.log(this.url)
     }
 }
 </script>
@@ -68,11 +75,9 @@ export default {
                 <div class="grid place-content-center">
                     <small @click="modals.instructions.show=true" class="hover:underline underline-offset-2 decoration-2 cursor-pointer font-semibold">Need Help? Click for instructions.</small>
                 </div>
-                <Modal :title="modals.instructions.title" :show="modals.instructions.show">
+                <Modal :title="modals.instructions.title" :show="modals.instructions.show" @closeModal="modals.instructions.show=false">
                     <template v-slot:content>
-                        <div>
-                            Lorem ipsum dolor sit.
-                        </div>
+                        <Instructions />
                     </template>
                 </Modal>
             </div>
