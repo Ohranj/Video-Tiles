@@ -4,10 +4,11 @@ import Trophy from '../components/svg/Trophy.vue';
 import Puzzle from '../components/svg/Puzzle.vue';
 import Clipboard from '../components/svg/Clipboard.vue';
 import Wallet from '../components/svg/Wallet.vue';
+import Modal from '../components/Modal.vue';
 
 export default {
     components: {
-        GuestLayout, Trophy, Puzzle, Clipboard, Wallet
+        GuestLayout, Trophy, Puzzle, Clipboard, Wallet, Modal
     },
     data() {
         return {
@@ -32,7 +33,13 @@ export default {
                     link: null,
                     icon: 'Clipboard'
                 }
-            ]
+            ],
+            modals: {
+                instructions: {
+                    show: false,
+                    title: 'Instructions'
+                }
+            }
         }
     }
 }
@@ -41,7 +48,7 @@ export default {
 <template>
     <GuestLayout>
         <template v-slot:content>
-            <div class="flex flex-col h-full min-h-[875px] justify-evenly space-y-8">
+            <div class="flex flex-col h-full min-h-[1080px] justify-evenly space-y-8">
                 <div class="flex flex-col justify-center space-y-2">
                     <h2 class="font-semibold text-xl">Welcome.</h2>
                     <h3 class="font-semibold text-lg">Ready to play?</h3>
@@ -59,8 +66,15 @@ export default {
                     <div class="border aspect-video w-full shadow shadow-black"></div>
                 </div>
                 <div class="grid place-content-center">
-                    <small class="hover:underline underline-offset-2 decoration-2 cursor-pointer font-semibold">Need Help? Click for instructions.</small>
+                    <small @click="modals.instructions.show=true" class="hover:underline underline-offset-2 decoration-2 cursor-pointer font-semibold">Need Help? Click for instructions.</small>
                 </div>
+                <Modal :title="modals.instructions.title" :show="modals.instructions.show">
+                    <template v-slot:content>
+                        <div>
+                            Lorem ipsum dolor sit.
+                        </div>
+                    </template>
+                </Modal>
             </div>
         </template>
     </GuestLayout>
