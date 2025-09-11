@@ -6,10 +6,11 @@ import Clipboard from '../components/svg/Clipboard.vue';
 import Wallet from '../components/svg/Wallet.vue';
 import Modal from '../components/Modal.vue';
 import Instructions from '../components/Instructions.vue';
+import PlayBox from '../components/PlayBox.vue';
 
 export default {
     components: {
-        GuestLayout, Trophy, Puzzle, Clipboard, Wallet, Modal, Instructions
+        GuestLayout, Trophy, Puzzle, Clipboard, Wallet, Modal, Instructions, PlayBox
     },
     props: {
         url: String
@@ -46,9 +47,6 @@ export default {
             }
         }
     },
-    mounted() {
-        console.log(this.url)
-    }
 }
 </script>
 
@@ -70,11 +68,14 @@ export default {
                     </template>
                 </div>
                 <div class="flex items-center mx-auto w-full max-w-[1000px]">
-                    <div class="border aspect-video w-full shadow shadow-black"></div>
+                    <div class="border aspect-video w-full shadow shadow-black">
+                        <PlayBox />
+                    </div>
                 </div>
                 <div class="grid place-content-center">
                     <small @click="modals.instructions.show=true" class="hover:underline underline-offset-2 decoration-2 cursor-pointer font-semibold">Need Help? Click for instructions.</small>
                 </div>
+                <video width="400" height="400" autoplay muted loop :src="url"></video>
                 <Modal :title="modals.instructions.title" :show="modals.instructions.show" @closeModal="modals.instructions.show=false">
                     <template v-slot:content>
                         <Instructions />
