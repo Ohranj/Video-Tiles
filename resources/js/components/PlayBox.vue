@@ -24,11 +24,14 @@ export default {
     mounted() {
         this.elements.video = document.querySelector('video')
         this.elements.canvas = document.querySelector('canvas')
+        const canvasParent = this.elements.canvas.parentElement;
+        this.elements.canvas.setAttribute('width', canvasParent.offsetWidth)
+        this.elements.canvas.setAttribute('height', canvasParent.offsetHeight)
         this.setEventListeners()
     },
 }
 </script>
 
 <template>
-    <canvas></canvas>
+    <canvas class="rounded shadow shadow-black"></canvas>
 </template>

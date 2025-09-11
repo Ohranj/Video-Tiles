@@ -68,14 +68,14 @@ export default {
                     </template>
                 </div>
                 <div class="flex items-center mx-auto w-full max-w-[1000px]">
-                    <div class="border aspect-video w-full shadow shadow-black">
+                    <div class="aspect-video w-full rounded">
                         <PlayBox />
                     </div>
                 </div>
                 <div class="grid place-content-center">
                     <small @click="modals.instructions.show=true" class="hover:underline underline-offset-2 decoration-2 cursor-pointer font-semibold">Need Help? Click for instructions.</small>
                 </div>
-                <video width="400" height="400" autoplay muted loop :src="url"></video>
+                <video autoplay muted loop :src="url" class="invisible w-0 h-0 absolute top-0 right-0"></video>
                 <Modal :title="modals.instructions.title" :show="modals.instructions.show" @closeModal="modals.instructions.show=false">
                     <template v-slot:content>
                         <Instructions />
